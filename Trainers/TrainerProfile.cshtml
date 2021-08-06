@@ -1,0 +1,37 @@
+﻿@model WebBasedTMS.Models.Trainers
+
+@{
+    ViewBag.Title = "TrainerProfile";
+    Layout = "~/Views/Shared/_Trainer.cshtml";
+}
+
+<div class="col">
+    <div class="card shadow">
+        <div class="card-header border-0">
+            <h3 class="mb-0">Application Form</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+                <tr>
+                    <th>Name</th>
+                    <td>@Model.Name</td>
+                    <th>Qualification</th>
+                    <td>@Model.Qualification</td>
+                </tr>
+                <tr>
+                    <th>Mobile Number</th>
+                    <td>@Model.MobileNumber</td>
+                    <th>Email Address</th>
+                    <td>@Model.Email</td>
+                </tr>
+                <tr>
+                    <th>Experience</th>
+                    <td>@Model.Experience years</td>
+                    <th>Skills</th>
+                    <td>@Model.Skills</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>

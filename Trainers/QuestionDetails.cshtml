@@ -1,0 +1,51 @@
+﻿@model WebBasedTMS.Models.Doubt
+
+@{
+    ViewBag.Title = "Question Details";
+    Layout = "~/Views/Shared/_Trainer.cshtml";
+}
+
+<div class="col-xl-12 order-xl-1">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">Question Details</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm())
+            {
+                <form>
+                    <div class="pl-lg-4">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Question, new { @class = "form-control-label" })
+                                    @Html.TextBoxFor(m => m.Question, new { @class = "form-control form-control-alternative",@disabled="disabled", @readonly = "readonly" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Answer, new { @class = "form-control-label" })
+                                    @Html.TextAreaFor(m => m.Answer, new { @class = "form-control form-control-alternative", @placeholder = "Answer" })
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @Html.HiddenFor(m=>m.Id)
+                    <button class="btn btn-primary">Answer Doubt</button>
+
+                </form>
+            }
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

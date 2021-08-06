@@ -1,0 +1,54 @@
+﻿@model IEnumerable<WebBasedTMS.Models.TestPapers>
+
+@{
+    ViewBag.Title = "TestPaper";
+    Layout = "~/Views/Shared/_Trainer.cshtml";
+}
+
+    <div class="col">
+        <a href="UploadTestPaper" class="btn btn-info">Test Paper</a>
+        <div class="card shadow">
+            <div class="card-header border-0">
+                <h3 class="mb-0">Test Papers</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Question</th>
+                            <th scope="col">Option A</th>
+                            <th scope="col">Option B</th>
+                            <th scope="col">Option C</th>
+                            <th scope="col">Option D</th>
+                            <th scope="col">Correct Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="4">No Questions</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var paper in Model)
+                            {
+                                <tr>
+                                    <th>@paper.Question</th>
+                                    <td>@paper.Choice1</td>
+                                    <td>@paper.Choice2</td>
+                                    <td>@paper.Choice3</td>
+                                    <td>@paper.Choice4</td>
+                                    <td>@paper.CorrectAnswer</td>
+                                </tr>
+                            }
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+

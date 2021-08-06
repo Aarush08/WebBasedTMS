@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WebBasedTMS.Models.Feedbacks>
+
+@{
+    ViewBag.Title = "ViewFeedbacks";
+    Layout = "~/Views/Shared/_Trainer.cshtml";
+}
+
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header border-0">
+                <h3 class="mb-0">Feedbacks</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Module</th>
+                            <th scope="col">Quality Of Teaching</th>
+                            <th scope="col">Overall</th>
+                            <th scope="col">Suggestions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var testCentres in Model)
+                        {
+                            <tr>
+                                <th>@testCentres.Module</th>
+                                <td>@testCentres.Q1</td>
+                                <td>@testCentres.Q5</td>
+                                <td>@testCentres.Suggestions</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

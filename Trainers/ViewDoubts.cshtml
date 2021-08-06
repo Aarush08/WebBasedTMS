@@ -1,0 +1,53 @@
+﻿@model IEnumerable<WebBasedTMS.Models.Doubt>
+
+@{
+    ViewBag.Title = "ViewDoubts";
+    Layout = "~/Views/Shared/_Trainer.cshtml";
+}
+
+
+<div class="col">
+    <div class="card shadow">
+        <div class="card-header border-0">
+            <h3 class="mb-0">Doubts</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Date Of Question</th>
+                        <th scope="col">Module</th>
+                        <th scope="col">Question</th>
+                        <th scope="col">Question Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var trainer in Model)
+                    {
+                        <tr>
+                            <td>@trainer.TimeStamp.ToString("dd MMMM yyyy")</td>
+                            <td>@trainer.Module</td>
+                            <td>@trainer.Question</td>
+                            @if (trainer.Status == false)
+                            {
+                                <td>Pending</td>
+                            }
+
+                            else
+                            {
+                                <td>Answered</td>
+                            }
+
+                            <td>
+                                @Html.ActionLink("Answer", "QuestionDetails", "Trainers", new { id = trainer.Id }, null)
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

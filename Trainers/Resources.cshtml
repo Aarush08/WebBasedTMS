@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WebBasedTMS.Models.Rescources>
+
+@{
+    ViewBag.Title = "Resources";
+    Layout = "~/Views/Shared/_Trainer.cshtml";
+}
+
+
+<div class="col">
+    <a href="UploadResources" class="btn btn-info">New Resources</a>
+    <div class="card shadow">
+        <div class="card-header border-0">
+            <h3 class="mb-0">Resources</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Module</th>
+                        <th scope="col">Resource Type</th>
+                        <th scope="col">Resources</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="3">No Resources</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var rescources in Model)
+                        {
+                            <tr>
+                                <th>@rescources.Module</th>
+                                <td>@rescources.ResourceType</td>
+                                @if (rescources.ResourceType == "File")
+                                {
+                                    <td><a href="@Url.Content(@rescources.FileName)">Open File</a></td>
+                                }
+                                else
+                                {
+                                    <td>
+                                        <a href="@Url.Content(@rescources.FileName)">Play Video</a>
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
