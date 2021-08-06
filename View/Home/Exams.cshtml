@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WebBasedTMS.Models.Exam>
+
+@{
+    ViewBag.Title = "Exams";
+    Layout = "~/Views/Shared/_MainPart.cshtml";
+}
+
+
+<div class="col">
+    <div class="card shadow">
+        <div class="card-header border-0">
+            <h3 class="mb-0">Exam Details</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Activity</th>
+                        <th scope="col">Day</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var dates in Model)
+                     {
+                    <tr>
+                        <th>@dates.Activity</th>
+                        <td>@dates.Day</td>
+                        <td>@dates.Date.ToString("dd MMMM yyyy")</td>
+                    </tr>
+                     }
+                    
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

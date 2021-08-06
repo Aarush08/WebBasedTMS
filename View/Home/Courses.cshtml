@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebBasedTMS.Models.Courses>
+@{
+    ViewBag.Title = "Courses";
+    Layout = "~/Views/Shared/_MainPart.cshtml";
+}
+
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header border-0">
+                <h3 class="mb-0">Courses Details</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Module</th>
+                            <th scope="col">Trainers</th>
+                            <th scope="col">Start Date</th>
+                            <th scope="col">End Date</th>
+                            <th scope="col">Duration</th>
+                            <th scope="col">Content</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="4">No Dates</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var courses in Model)
+                            {
+                    <tr>
+                        <th>@courses.Module</th>
+                        <td>@courses.Trainers.Name</td>
+                        <td>@courses.StartDate.ToString("dd MMMM yyyy")</td>
+                        <td>@courses.EndDate.ToString("dd MMMM yyyy")</td>
+                        <td>@courses.Duration hours</td>
+                        <td>@courses.Content</td>
+                    </tr>
+                            }
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
