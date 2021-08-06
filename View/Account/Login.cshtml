@@ -1,0 +1,79 @@
+﻿@using WebBasedTMS.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+        Layout = "~/Views/Shared/_MainPart.cshtml";
+}
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+
+    .input-validation-error {
+        border: 2px solid red;
+    }
+</style>
+
+<div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
+        <div class="card bg-secondary shadow border-0">
+            <div class="card-header bg-transparent pb-5">
+                <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
+
+                <div class="btn-wrapper text-center">
+                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                </div>
+            </div>
+            <div class="card-body px-lg-5 py-lg-5">
+                <div class="text-center text-muted mb-4">
+                    <small>Or sign in with credentials</small>
+                </div>
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                    <div class="form-group mb-3">
+                        <div class="input-group input-group-alternative">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                            </div>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email Address" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group input-group-alternative">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                            </div>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <input type="submit" value="Log in" class="btn btn-default" />
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-6">
+                <small>
+                    @Html.ActionLink("Forgot your password?", "ForgotPassword", new { Styles = "color:white" })
+                </small>
+            </div>
+            <div class="col-6 text-right">
+                <small>
+                    @Html.ActionLink("Register as a new user", "Register")
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
