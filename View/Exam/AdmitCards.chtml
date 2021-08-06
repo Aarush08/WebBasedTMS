@@ -1,0 +1,68 @@
+@model WebBasedTMS.Models.AdmitCard
+
+@{
+    ViewBag.Title = "Admit Cards";
+    Layout = "~/Views/Shared/_Exam.cshtml";
+}
+@{
+    var words = Model.ExamCentre.Split(',');
+}
+<div class="col">
+    <div class="card shadow">
+        <div class="card-header border-0">
+            <h3 class="mb-0">Admit Card</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+                <tr>
+                    <th><center>Date</center> </th>
+                    <th><center>Day</center> </th>
+                    <th><center>Time</center></th>
+                </tr>
+                <tr>
+                    <td><center>@Model.DateOfExam.ToString("dd MMMM yyyy")</center></td>
+                    <td><center>Sunday</center></td>
+                    <td><center>9:00 AM to 11:00 AM</center></td>
+                </tr>
+                <tr>
+                    <th><center>Application Number</center></th>
+                    <th><center>@Model.ApplicationNo</center></th>
+                    <td rowspan="4"><center><img src="@Url.Content(Model.Image)" width="200" height="200" /></center></td>
+                </tr>
+                <tr>
+                    <th><center>Name</center></th>
+                    <th><center>@Model.Name</center></th>
+                </tr>
+                <tr>
+                    <th><center>Password</center></th>
+                    <th><center>@Model.MobileNumber</center></th>
+                </tr>
+                <tr>
+                    <th><center>Exam Centre</center></th>
+                    <th><center>@words[0] , @words[1]<br />@words[2] , @words[3] , @words[4]-@words[5]<br /></center></th>
+                </tr>
+                <tr>
+                    <th colspan="4"><center><h1>Instructions For Exam</h1></center></th>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                             1.A printed copy of this Admit Card must be presented for the verification along with at least one original (not photocopy or scanned copy) valid photo identification
+                            <br> proof (For example: Passport,PAN Card, Voter ID, Aadhaar-UID, College ID, Employee ID, Driving License).
+                            <br>
+                            2.The Admit Card is considered to be valid only if the photograph and signature are clear. To ensure this, print the admit card on an A4 sized paper using a laser
+                            <br> printer, preferably a colour photo printer.
+                            <br>
+                            3.Candidates will be permitted to appear for the examination ONLY after verification of their credentials by the centre officials.Candidates are advised to locate
+                            <br> the examination centre at least a day before the examination, so as to ensure that they can reach the centre on time.
+                            <br>
+                            4.To facilitate the verification of their identity, candidates must report at the examination venue at least 60 minutes before the scheduled commencement of exam.
+                            <br>
+                            5.Candidates will be permitted to occupy their seats 45 minutes before the scheduled start of the examination. Candidates can login and start reading the
+                            <br> instructions 20 minutes before start of the examination.
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>
