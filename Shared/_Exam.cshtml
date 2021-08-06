@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <!-- Favicon -->
+    <link href="~/assets/img/brand/favicon.png" rel="icon" type="image/png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Icons -->
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.css" />
+    <link href="~/assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+    <link href="~/assets/js/plugins/fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link href="~/assets/css/argon-dashboard.css?v=1.1.1" rel="stylesheet" />
+</head>
+
+<body class="">
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+        <div class="container-fluid">
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Brand -->
+            <a class="navbar-brand pt-0" href="@Url.Action("index", "Exam")">
+                Web Based TMS
+            </a>
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+                <!-- Collapse header -->
+                <div class="navbar-collapse-header d-md-none">
+                    <div class="row">
+
+                        <div class="col-6 collapse-close">
+                            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+                                <span></span>
+                                <span></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <ul class="navbar-nav">
+                    <li class="nav-item  active ">
+                        <a class="nav-link  active " href="@Url.Action("index", "Exam")">
+                            <i class="ni ni-tv-2 text-primary"></i>Dates
+                        </a>
+                    </li>
+                    <li class="nav-item  active ">
+                        <a class="nav-link  active " href="@Url.Action("Register", "Exam")">
+                            <i class="ni ni-tv-2 text-primary"></i>Registration
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="@Url.Action("SearchApplication", "Exam")">
+                            <i class="fa fa-calendar text-indigo"></i> View Application
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="@Url.Action("SearchApplication", "Exam")">
+                            <i class="ni ni-single-02 text-yellow"></i> Admit Cards
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="@Url.Action("SearchCertificate", "Exam")">
+                            <i class="ni ni-single-02 text-yellow"></i> Certificates
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " href="@Url.Action("Courses", "Home")">
+                            Back To Main Portal
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <div class="main-content">
+        <!-- Navbar -->
+       
+        <!-- End Navbar -->
+        <!-- Header -->
+        <div class="header bg-gradient-primary pb-8 pt-5 pt-md-8">
+        </div>
+        <div class="container-fluid mt--7">
+            <div class="row">
+                @RenderBody()
+            </div>
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="row align-items-center justify-content-xl-between">
+                    <div class="col-xl-6">
+                        <div class="copyright text-center text-xl-left text-muted">
+                            &copy; 2020 <a class="font-weight-bold ml-1">Web Based Training Management System</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!--   Core   -->
+    <script src="~/assets/js/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="~/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!--   Optional JS   -->
+    <script src="~/assets/js/plugins/chart.js/dist/Chart.min.js"></script>
+    <script src="~/assets/js/plugins/chart.js/dist/Chart.extension.js"></script>
+    <!--   Argon JS   -->
+    <script src="~/assets/js/argon-dashboard.min.js?v=1.1.1"></script>
+    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js");
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js");
+    @RenderSection("scripts", required: false);
+</body>
+</html>
