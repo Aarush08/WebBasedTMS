@@ -1,0 +1,72 @@
+﻿@model WebBasedTMS.Models.CourseParticipants
+
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_Participant.cshtml";
+}
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+
+    .input-validation-error {
+        border: 2px solid red;
+    }
+</style>
+
+<div class="col-xl-12 order-xl-1">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">NEW COURSE STUDENT REGISTRATION</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm())
+            {
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Name, new { @class = "form-control-label" })
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control form-control-alternative", @placeholder = "Name",Value=@ViewBag.Name,disabled = "disabled" })
+                                @Html.ValidationMessageFor(m => m.Name, "")
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.MobileNumber, new { @class = "form-control-label" })
+                                @Html.TextBoxFor(m => m.MobileNumber, new { @class = "form-control form-control-alternative", @placeholder = "Mobile Number",Value=@ViewBag.MobileNumber,disabled = "disabled" })
+                                @Html.ValidationMessageFor(m => m.MobileNumber, "")
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.EmailAddress, new { @class = "form-control-label" })
+                                @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control form-control-alternative", @placeholder = "Email Address",Value= @User.Identity.Name,disabled = "disabled" })
+                                @Html.ValidationMessageFor(m => m.EmailAddress, "")
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Module, new { @class = "form-control-label" })
+                                @Html.DropDownListFor(m => m.Module, (IEnumerable<SelectListItem>)ViewBag.Module, null, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary">REGISTER</button>
+            }
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

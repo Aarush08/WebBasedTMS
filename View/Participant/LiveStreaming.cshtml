@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebBasedTMS.Models.LiveStreaming>
+
+@{
+    ViewBag.Title = "LiveStreaming";
+    Layout = "~/Views/Shared/_Participant.cshtml";
+}
+
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header border-0">
+                <h3 class="mb-0">Courses Details</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Module</th>
+                            <th scope="col">Learn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr>
+                                <td colspan="2">No Active Courses</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var courses in Model)
+                            {
+                                <tr>
+                                    <th>@courses.Module</th>
+                                    @if(@courses.MeetingId=="Updated Soon...!!!")
+                                    {
+                                        <td>Wait For Trainer To Update</td>
+                                    }
+                                    else
+                                    {
+                                        var meeting = "https://go.teamviewer.com/v14/"+courses.MeetingId;
+                                        <td><a href="@meeting">Learn</a></td>
+                                    }
+                                    
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>

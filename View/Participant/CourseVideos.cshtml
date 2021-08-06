@@ -1,0 +1,39 @@
+﻿@model WebBasedTMS.Models.Rescources
+
+@{
+    ViewBag.Title = "CourseVideos";
+    Layout = "~/Views/Shared/_Participant.cshtml";
+}
+
+<div class="col">
+    <div class="card shadow">
+        <div class="card-header border-0">
+            <h3 class="mb-0">@Model.Module</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        @if (Model.Module == null)
+                        {
+                            <td>Sorry...!!! No Videos Exists</td>
+                        }
+                        else
+                        {
+                            <td>
+                                <div class="video-frame">
+                                    <video style="width:500px; height:300px;" controls>
+                                        <source src="@Url.Content(Model.FileName)" type="video/mp4" />
+                                    </video>
+                                </div>
+                            </td>
+                        }
+
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<WebBasedTMS.Models.CourseParticipants>
+
+@{
+    ViewBag.Title = "RegisteredCourses";
+    Layout = "~/Views/Shared/_Participant.cshtml";
+    var today = DateTime.UtcNow;
+}
+
+<div class="col">
+    <a href="Registration" class="btn btn-success">New Course Registration</a>
+    <div class="card shadow">
+        <div class="card-header border-0">
+            <h3 class="mb-0">Registered Courses</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Module</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">Payment</th>
+                        <th scope="col">Course Details</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="5">No Registrations</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var courses in Model)
+                        {
+                            <tr>
+                                <td>@courses.Module</td>
+                                <td>@courses.StartTime</td>
+                                @if (courses.PaymentStatus == false)
+                                {
+                                    <td>Pending</td>
+                                    <td>Not Started</td>
+                                    if (DateTime.Compare(today, courses.StartTime) > 0)
+                                    {
+                                        <td>Expired</td>
+
+                                    }
+                                    else
+                                    {
+                                        <td><a href="MakePayment?id=@courses.Id" class="btn btn-success">Make Payment</a></td>
+                                    }
+                                }
+                                else
+                                {
+                                    <td>Completed</td>
+
+                                    var nextten = courses.StartTime.AddDays(10);
+                                    if (DateTime.Compare(today, nextten) > 0)
+                                    {
+                                        <td>Completed</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Going On</td>
+                                    }
+                                    <td></td>
+                                }
+
+                            </tr>
+                        }
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

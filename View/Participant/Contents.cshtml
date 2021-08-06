@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WebBasedTMS.Models.Courses>
+
+@{
+    ViewBag.Title = "Contents";
+    Layout = "~/Views/Shared/_Participant.cshtml";
+}
+
+<div class="col">
+    <div class="card shadow">
+        <div class="card-header border-0">
+            <h3 class="mb-0">Courses Details</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Module</th>
+                        <th scope="col">Trainers</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Duration</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">Introductory Video</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="7">No Courses</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var courses in Model)
+                        {
+                            <tr>
+                                <th>@courses.Module</th>
+                                <td>@courses.Trainers.Name</td>
+                                <td>@courses.StartDate.ToString("dd MMMM yyyy")</td>
+                                <td>@courses.EndDate.ToString("dd MMMM yyyy")</td>
+                                <td>@courses.Duration hours</td>
+                                <td>@courses.Content</td>
+                                <td>@Html.ActionLink("Open Video","CourseVideos","Participant",new { course=courses.Module},null)</td>
+                            </tr>
+                        }
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

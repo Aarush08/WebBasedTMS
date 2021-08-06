@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebBasedTMS.Models.Doubt>
+
+@{
+    ViewBag.Title = "Doubt";
+    Layout = "~/Views/Shared/_Participant.cshtml";
+}
+
+<div class="col">
+    <a href="AskDoubts" class="btn btn-info">Ask Doubt</a>
+    <div class="card shadow">
+        <div class="card-header border-0">
+            <h3 class="mb-0">Courses</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-items-center table-flush" id="dtplug">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">TimeStamp</th>
+                        <th scope="col">Module</th>
+                        <th scope="col">Question</th>
+                        <th scope="col">Answer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var courses in Model)
+                    {
+                        <tr>
+                            <td>@courses.TimeStamp</td>
+                            <td>@courses.Module</td>
+                            <td>@courses.Question</td>
+                            @if (courses.Status == true)
+                            {
+                                <td><a href="ViewAnswer?id=@courses.Id" class="btn btn-primary">View Answer</a></td>
+                            }
+                            else
+                            {
+                                <td>Wait For Trainer To Answer</td>
+                            }
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
