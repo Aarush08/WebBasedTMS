@@ -1,0 +1,81 @@
+@model WebBasedTMS.Models.Courses
+
+@{
+    ViewBag.Title = "AddCourses";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+    <style>
+        .field-validation-error {
+            color: red;
+        }
+
+        .input-validation-error {
+            border: 2px solid red;
+        }
+    </style>
+<div class="col-xl-12 order-xl-1">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">New Course</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm())
+            {
+                <form>
+                    <div class="pl-lg-4">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Trainers, new { @class = "form-control-label" })
+                                    @Html.DropDownListFor(m => m.TrainersId, (IEnumerable<SelectListItem>)ViewBag.Trainers, null, new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Module, new { @class = "form-control-label" })
+                                    @Html.TextBoxFor(m => m.Module, new { @class = "form-control form-control-alternative", @placeholder = "Module" })
+                                    @Html.ValidationMessageFor(m => m.Module, "")
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.StartDate, new { @class = "form-control-label" })
+                                    @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control form-control-alternative", @placeholder = "Start Date",@type="datetime-local" })
+                                    @Html.ValidationMessageFor(m => m.StartDate, "")
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.EndDate, new { @class = "form-control-label" })
+                                    @Html.TextBoxFor(m => m.EndDate, new { @class = "form-control form-control-alternative", @placeholder = "End Date",@type="datetime-local" })
+                                    @Html.ValidationMessageFor(m => m.EndDate, "")
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Duration, new { @class = "form-control-label" })
+                                    @Html.TextBoxFor(m => m.Duration, new { @class = "form-control form-control-alternative", @placeholder = "Duration" })
+                                    @Html.ValidationMessageFor(m => m.Duration, "")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary">Add Course</button>
+
+                </form>
+            }
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
