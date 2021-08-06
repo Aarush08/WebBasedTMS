@@ -1,0 +1,108 @@
+@model WebBasedTMS.Models.TestPapers
+
+@{
+    ViewBag.Title = "Exam";
+    Layout = null;
+    var endTime = ((DateTime)ViewBag.ExpireTime);
+    var timeremaining = TimeSpan.FromTicks(endTime.Ticks - DateTime.UtcNow.Ticks).TotalSeconds.ToString("#");
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+<div class="row" style="background-color:#eee;">
+    <div class="col-md-4">
+        Application Number @Session["appno"]
+    </div>
+    <div class="col-md-4">
+        Candidate Name @ViewBag.Cname
+    </div>
+    <div class="col-md-4">
+        Module @ViewBag.Mname
+    </div>
+</div>
+<br />
+<br />
+<br />
+
+<div class="form-row">
+    <div class="form-group col-md-3">
+        <table>
+            <tr>
+                <td colspan="5">Time Remaining:<span id="minremain"></span>:<span id="secremain"></span></td>
+            </tr>
+            @for (int i = 00; i < 50; i = i + 5)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("Exam", "Test", new { @token=Session["appno"],@quesno=(i+1)})" class="btn" style="width:50px; border:solid gray">@(i + 1)</a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Exam", "Test", new { @token=Session["appno"],@quesno=(i+2)})" class="btn" style="width:50px; border:solid gray">@(i + 2)</a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Exam", "Test", new { @token=Session["appno"],@quesno=(i+3)})" class="btn" style="width:50px; border:solid gray">@(i + 3)</a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Exam", "Test", new { @token=Session["appno"],@quesno=(i+4)})" class="btn" style="width:50px; border:solid gray">@(i + 4)</a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Exam", "Test", new { @token=Session["appno"],@quesno=(i+5)})" class="btn" style="width:50px; border:solid gray">@(i + 5)</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div class="form-group col-md-9">
+        <div class="card" style="max-width:1000px;">
+            <div class="card-body">
+                @using (Html.BeginForm("ExamAnswers", "Test", FormMethod.Post))
+                {
+                    @Model.Question<br /><br />
+                    <input type="hidden" name="QuesNo" value="@Model.Id" />
+                    <h5>@ViewBag.Answer</h5>
+                    <input type="hidden" name="ApplicationNo" value="@Session["appno"]" />
+                    <input type="radio" name="ChoiceQue" value="A") /> @Model.Choice1 <br /><br />
+                    <input type="radio" name="ChoiceQue" value="B")} /> @Model.Choice2 <br /><br />
+                    <input type="radio" name="ChoiceQue" value="C") /> @Model.Choice3 <br /><br />
+                    <input type="radio" name="ChoiceQue" value="D") /> @Model.Choice4 <br /><br />
+                    <input type="submit" value="Save & Next" class="btn btn-success" />
+                    <input type="reset" value="Clear" class="btn btn-danger" />
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var remainingsec =@timeremaining;
+    var seccounter = remainingsec % 60;
+
+    function formatNumber(number) {
+        if (number < 10) return '0' + number;
+        else return '' + number;
+    }
+    function starttick() {
+        document.getElementById('secremain').innerText = formatNumber(seccounter);
+        document.getElementById('minremain').innerText = formatNumber(parseInt(remainingsec / 60));
+        var _tick = setInterval(function () {
+            if (remainingsec > 0) {
+                remainingsec = remainingsec - 1;
+                seccounter = seccounter - 1;
+                document.getElementById('secremain').innerText = formatNumber(seccounter);
+                document.getElementById('minremain').innerText = formatNumber(parseInt(remainingsec / 60));
+                if (seccounter == 0)
+                    seccounter = 60;
+            }
+            else {
+                alert('Your Exam is Ended...!!!');
+                clearInterval(_tick);
+            }
+
+        },1000)
+    }
+    starttick();
+</script>
