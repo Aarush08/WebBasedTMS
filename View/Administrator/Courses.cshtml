@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebBasedTMS.Models.Courses>
+
+@{
+    ViewBag.Title = "Courses";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+    <div class="col">
+        <a href="@Url.Action("AddCourses", "Administrator")" class="btn btn-info">New Courses</a>
+        <div class="card shadow">
+            <div class="card-header border-0">
+                <h3 class="mb-0">Courses</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush" id="dtplug">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Module</th>
+                            <th scope="col">Trainer</th>
+                            <th scope="col">Start Date</th>
+                            <th scope="col">End Date</th>
+                            <th scope="col">Duration</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var courses in Model)
+                        {
+                            <tr>
+                                <td>@courses.Module</td>
+                                <td>@courses.Trainers.Name</td>
+                                <td>@courses.StartDate.ToString("dd MMMM yyyy")</td>
+                                <td>@courses.EndDate.ToString("dd MMMM yyyy")</td>
+                                <td>@courses.Duration Hours</td>
+                                <td>
+                                    @Html.ActionLink("Remove", "RemoveCoursesConfirmation", "Administrator", new { id = courses.Id }, null)
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>

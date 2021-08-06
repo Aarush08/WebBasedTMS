@@ -1,0 +1,31 @@
+﻿@model WebBasedTMS.Models.ApplicationUser
+
+@{
+    ViewBag.Title = "AdminProfile";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<div class="col">
+    <div class="card shadow">
+        <div class="card-header border-0">
+            <h3 class="mb-0">Application Form</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+                <tr>
+                    <th>Name</th>
+                    <td>@Model.Name</td>
+                    <th>Username</th>
+                    <td>@Model.UserName</td>
+                </tr>
+                <tr>
+                    <th>Mobile Number</th>
+                    <td>@Model.MobileNumber</td>
+                    <th>Email Address</th>
+                    <td>@Model.Email</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>

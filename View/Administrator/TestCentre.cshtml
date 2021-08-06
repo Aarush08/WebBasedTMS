@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebBasedTMS.Models.TestCentres>
+
+@{
+    ViewBag.Title = "TestCentre";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+    <div class="col">
+        <a href="AddTestCentre" class="btn btn-info">New Test Centres</a>
+        <div class="card shadow">
+            <div class="card-header border-0">
+                <h3 class="mb-0">Test Centres</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Contact Number</th>
+                            <th scope="col">Total Seats</th>
+                            <th scope="col">Available Seats</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var testCentres in Model)
+                        {
+                            <tr>
+                                <th>@testCentres.Name</th>
+                                <td>@testCentres.Address,@testCentres.City</td>
+                                <td>@testCentres.ContactNo</td>
+                                <td>@testCentres.TotalSeats</td>
+                                <td>@testCentres.AvailableSeats</td>
+                                <td>
+                                    @Html.ActionLink("Update", "UpdateTestCentre", "Administrator", new { id = testCentres.Id }, null) |
+                                    @Html.ActionLink("Delete", "RemoveTestCentreConfirmation", "Administrator", new { id = testCentres.Id }, null)
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+

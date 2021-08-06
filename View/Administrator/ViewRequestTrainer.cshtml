@@ -1,0 +1,49 @@
+﻿@model WebBasedTMS.Models.TrainerRequest
+
+@{
+    ViewBag.Title = "ViewRequestTrainer";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+
+    <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
+        <div class="card card-profile shadow">
+            <div class="row justify-content-center">
+                <div class="col-lg-3 order-lg-2">
+                    <div class="card-profile-image">
+                        <a href="#">
+                            <img src="@Url.Content(Model.ImageName)" class="rounded-circle">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+            </div>
+            <div class="card-body pt-0 pt-md-4">
+                <div class="row"><div class="col"><div class="card-profile-stats d-flex justify-content-center mt-md-5"></div></div></div>
+                <div class="text-center">
+                    <h3>
+                        @Model.Name
+                    </h3>
+                    <div class="h5 font-weight-300">
+                        <i class="ni location_pin mr-2"></i>Email Id-@Model.Email
+                    </div>
+                    <div class="h5 mt-4">
+                        <i class="ni business_briefcase-24 mr-2"></i>Mobile Number-@Model.MobileNumber
+                    </div>
+                    <div>
+                        <i class="ni education_hat mr-2"></i>Experience-@Model.Experience Years
+                    </div>
+                    <div class="h5 mt-4">
+                        <i class="ni business_briefcase-24 mr-2"></i>Qualification-@Model.Qualification
+                    </div>
+                    <div>
+                        <i class="ni education_hat mr-2"></i>Skills-@Model.Skills
+                    </div>
+                    <div>
+                        <a href="@Url.Content(Model.SocialProfile)" class="btn btn-info">Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

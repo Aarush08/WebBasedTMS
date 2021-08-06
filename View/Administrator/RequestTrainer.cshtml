@@ -1,0 +1,47 @@
+﻿@model IEnumerable<WebBasedTMS.Models.TrainerRequest>
+
+@{
+    ViewBag.Title = "RequestTrainer";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header border-0">
+                <h3 class="mb-0">Trainer Details</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email Address</th>
+                            <th scope="col">Mobile Number</th>
+                            <th scope="col">Qualifications</th>
+                            <th scope="col">Experience</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var trainer in Model)
+                        {
+                            <tr>
+                                <td>@trainer.Name</td>
+                                <td>@trainer.Email</td>
+                                <td>@trainer.MobileNumber</td>
+                                <td>@trainer.Qualification</td>
+                                <td>@trainer.Experience</td>
+                                <td>
+                                    @Html.ActionLink("View", "ViewRequestTrainer", "Administrator", new { id = trainer.Id }, null) |
+                                    @Html.ActionLink("Approve", "ApproveTrainerConfirmation", "Administrator", new { id = trainer.Id }, null) |
+                                    @Html.ActionLink("Decline", "DeclineTrainerConfirmation", "Administrator", new { id = trainer.Id }, null)
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WebBasedTMS.Models.Scores>
+
+@{
+    ViewBag.Title = "ViewScores";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<div class="col">
+    <div class="card shadow">
+        <div class="card-header border-0">
+            <h3 class="mb-0">Scores</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Application Id</th>
+                        <th scope="col">Date Of Exam</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">EmailId</th>
+                        <th scope="col">Module</th>
+                        <th scope="col">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var scores in Model)
+                    {
+                        <tr>
+                            <th>@scores.ApplicationId</th>
+                            <td>@scores.DateOfExam</td>
+                            <td>@scores.Name</td>
+                            <td>@scores.EmailId</td>
+                            <td>@scores.Module</td>
+                            <td>@scores.Score</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

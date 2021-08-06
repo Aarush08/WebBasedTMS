@@ -1,0 +1,36 @@
+﻿@model WebBasedTMS.Models.Exam
+
+@{
+    ViewBag.Title = "RemoveExamConfirmation";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+
+    <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
+        <div class="card card-profile shadow">
+            <div class="card-body pt-0 pt-md-4">
+                <div class="text-center">
+                    <h2>
+                        @Html.DisplayFor(m => m.Activity)
+                    </h2>
+                    <div>
+                        <i class="ni education_hat mr-2"></i>@Html.DisplayFor(m => m.Day)
+                    </div>
+                    <div>
+                        <i class="ni education_hat mr-2"></i>@Html.DisplayFor(m => m.Date)
+                    </div>
+                    @using (Html.BeginForm("RemoveExam", "Administrator", FormMethod.Post))
+                    {
+                        <br />
+                        @Html.HiddenFor(m => m.Id);
+                        <button class="btn btn-danger">Remove</button>
+                        <br />
+                        <br />
+                        @Html.ActionLink("Back to Exam Dates", "Exams", "Administrator")
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+

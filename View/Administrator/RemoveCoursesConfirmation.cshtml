@@ -1,0 +1,36 @@
+﻿@model WebBasedTMS.Models.Courses
+
+@{
+    ViewBag.Title = "RemoveCoursesConfirmation";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+    <div class="col-xl-12 order-xl-2 mb-5 mb-xl-0">
+        <div class="card card-profile shadow">
+            <div class="card-body pt-0 pt-md-4">
+                <div class="text-center">
+                    <h2>
+                        @Html.DisplayFor(m => m.Module)
+                    </h2>
+                    <div>
+                        <i class="ni education_hat mr-2"></i>Start Date-@Model.StartDate.ToString("dd MMMM yyyy")
+                    </div>
+                    <div>
+                        <i class="ni education_hat mr-2"></i>End Date-@Model.EndDate.ToString("dd MMMM yyyy")
+                    </div>
+                    <div>
+                        <i class="ni education_hat mr-2"></i>Duration-@Html.DisplayFor(m => m.Duration) days
+                    </div>
+                    @using (Html.BeginForm("RemoveCourses", "Administrator", FormMethod.Post))
+                    {
+                        <br />
+                        @Html.HiddenFor(m => m.Id);
+                        <button class="btn btn-danger">Remove</button>
+                        <br />
+                        <br />
+                        @Html.ActionLink("Back to Courses", "Courses", "Administrator")
+                    }
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<div class="col-xl-7 mb-5 mb-xl-0">
+    <div class="card shadow">
+        <div class="card-header bg-transparent">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h6 class="text-uppercase text-muted ls-1 mb-1">Overview</h6>
+                    <h2 class="mb-0">Sales</h2>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- Chart -->
+            <div class="chart">
+                <!-- Chart wrapper -->
+                <div id="curve_chart" style="height: 350px"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xl-5">
+    <div class="card shadow">
+        <div class="card-header bg-transparent">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
+                    <h2 class="mb-0">Trainer's Feedback</h2>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- Chart -->
+            <div class="chart">
+                <div id="piechart_3d" style="height:350px; background-color:black"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['Poor', @ViewBag.poor],
+            ['Average', @ViewBag.avg],
+            ['Good', @ViewBag.best]
+        ]);
+
+        var options = {
+            is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+        chart.draw(data, options);
+    }
+</script>
+<script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Year', 'Courses', 'Exams'],
+            ['2018', @ViewBag.y2018, @ViewBag.e2018],
+            ['2019', @ViewBag.y2019, @ViewBag.e2019],
+            ['2020', @ViewBag.y2020, @ViewBag.e2020]
+        ]);
+
+        var options = {
+            curveType: 'function',
+            legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+    }
+</script>
+

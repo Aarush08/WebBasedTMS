@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebBasedTMS.Models.ExamParticipants>
+
+@{
+    ViewBag.Title = "ViewExamParticipants";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header border-0">
+                <h3 class="mb-0">Exam Participants</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Mobile Number</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Module</th>
+                            <th scope="col">ExamCity</th>
+                            <th scope="col">ExamDate</th>
+                            <th scope="col">Pay Status</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var students in Model)
+                        {
+                        <tr>
+                            <td>@students.Name</td>
+                            <td>@students.MobileNumber</td>
+                            <td>@students.Email</td>
+                            <td>@students.Module</td>
+                            <td>@students.ExamCity</td>
+                            <td>@students.ExamDate.ToString("dd MMMM yyyy")</td>
+                            <td>@students.PaymmentStatus</td>
+                            <td><a href="DeleteRegisteredParticipants/@students.Id" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
