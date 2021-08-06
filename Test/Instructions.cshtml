@@ -1,0 +1,49 @@
+﻿@model WebBasedTMS.Models.AdmitCard
+@{
+    ViewBag.Title = "Instructions";
+    Layout = null;
+}
+@{
+    
+}
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <div class="card col-md-12" style="max-height:150px;background-color:#eee;align-items:center">
+        <div class="row no-gutters">
+            <div class="col-md-4" style="max-height:150px;max-width:150px">
+                <img src="@Url.Content(Model.Image)" class="card-img" alt="..." height="140" width="100">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <p class="card-text">
+                        Application Number-@Session["appno"]   <br>Name-@Session["Name"]   <br> Module-@Session["course"]
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<br />
+    <div class="card">
+        <div class="card-header">
+            Instructions
+        </div>
+        <div class="card-body">
+            <p class="card-text">
+                1.The student must not have mobile phones, course notes, or receive help from a proctor or any other outside source.<br>
+                2.Students must complete the 50-question multiple-choice exam within the 90-minute time frame allotted for the exam.<br />
+                3.Students must not stop the session and then return to it. This is especially important in the online environment where the system will "time-out" and not allow the student or you to reenter the exam site.<br />
+            </p>
+            @using (Html.BeginForm("Exam", "Test", FormMethod.Get))
+            {
+                @Html.Hidden("token", Model.ApplicationNo)
+                @Html.Hidden("quesno", 1)
+                <input type="submit" value="Start Exam" class="btn btn-primary" />
+            }
+        </div>
+    </div>

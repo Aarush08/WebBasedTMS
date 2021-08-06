@@ -1,0 +1,120 @@
+﻿@model WebBasedTMS.Models.Scores
+
+@{
+    ViewBag.Title = "ScoreCard";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        Exam Score
+    </title>
+    <!-- Favicon -->
+    <link href="../assets/img/brand/favicon.png" rel="icon" type="image/png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <!-- Icons -->
+    <link href="../assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+    <link href="../assets/js/plugins/fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link href="../assets/css/argon-dashboard.css?v=1.1.1" rel="stylesheet" />
+</head>
+
+<body class="bg-default">
+    <div class="header bg-gradient-primary pb-8 pt-5 pt-md-3">
+        <div class="container-fluid">
+        </div>
+    </div>
+    <div class="container-fluid mt--7">
+        <!-- Table -->
+        <div class="row">
+            <div class="col">
+                <div class="card shadow">
+                    <div class="card-header border-0">
+                        <h3 class="mb-0">Exam Score</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table align-items-center table-flush">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">
+                                        Application Number
+                                    </th>
+                                    <td>
+                                        @Model.ApplicationId
+                                    </td>
+                                    <th scope="row">
+                                        Name
+                                    </th>
+                                    <td>
+                                        @Model.Name
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        Email Address
+                                    </th>
+                                    <td>
+                                        @Model.EmailId
+                                    </td>
+                                    <th scope="row">
+                                        Date Of Exam
+                                    </th>
+                                    <td>
+                                        @Model.DateOfExam.ToString("dd MMMM yyyy")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        Module
+                                    </th>
+                                    <td>
+                                        @Model.Module
+                                    </td>
+                                    <th scope="row">
+                                        Score
+                                    </th>
+                                    <td>
+                                        @Model.Score
+                                    </td>
+                                </tr>
+                                <tr>
+                                    @if (Model.Score < 30)
+                                    {
+                                        <th colspan="4" scope="row">
+                                            <center>
+                                                You Are Not Eligible to Get Certificate
+                                            </center>   
+                                        </th>
+                                    }
+                                    else
+                                    {
+                                        <th colspan="4" scope="row">
+                                            <center>
+                                                You Are Eligible for Certificate You can download From Portal
+                                            </center>
+                                        </th>
+                                    }
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--   Core   -->
+    <script src="../assets/js/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!--   Optional JS   -->
+    <!--   Argon JS   -->
+    <script src="../assets/js/argon-dashboard.min.js?v=1.1.1"></script>
+    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+</body>
+
+</html>
