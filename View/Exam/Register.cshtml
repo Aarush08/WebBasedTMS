@@ -1,0 +1,134 @@
+﻿@model WebBasedTMS.Models.ExamParticipants
+
+@{
+    ViewBag.Title = "Registeration";
+    Layout = "~/Views/Shared/_Exam.cshtml";
+}
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+
+    .input-validation-error {
+        border: 2px solid red;
+    }
+</style>
+<div class="col-xl-12 order-xl-1">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">New Registration</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Register","Exam",FormMethod.Post,new { enctype = "multipart/form-data" }))
+            {
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Name, new { @class = "form-control-label" })
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control form-control-alternative", @placeholder = "Name" })
+                                @Html.ValidationMessageFor(m => m.Name, "")
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.DateofBirth, new { @class = "form-control-label" })
+                                @Html.TextBoxFor(m => m.DateofBirth, new { @class = "form-control form-control-alternative", @placeholder = "ex 1 Jan 2000",@type="date" })
+                                @Html.ValidationMessageFor(m => m.DateofBirth, "")
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.MobileNumber, new { @class = "form-control-label" })
+                                @Html.TextBoxFor(m => m.MobileNumber, new { @class = "form-control form-control-alternative", @placeholder = "Mobile Number" })
+                                @Html.ValidationMessageFor(m => m.MobileNumber, "")
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Email, new { @class = "form-control-label" })
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-alternative", @placeholder = "Email" })
+                                @Html.ValidationMessageFor(m => m.Email, "")
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Address, new { @class = "form-control-label" })
+                                @Html.TextBoxFor(m => m.Address, new { @class = "form-control form-control-alternative", @placeholder = "Address" })
+                                @Html.ValidationMessageFor(m => m.Address, "")
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.City, new { @class = "form-control-label" })
+                                @Html.TextBoxFor(m => m.City, new { @class = "form-control form-control-alternative", @placeholder = "City" })
+                                @Html.ValidationMessageFor(m => m.City, "")
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.State, new { @class = "form-control-label" })
+                                @Html.TextBoxFor(m => m.State, new { @class = "form-control form-control-alternative", @placeholder = "State" })
+                                @Html.ValidationMessageFor(m => m.State, "")
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Country, new { @class = "form-control-label" })
+                                @Html.TextBoxFor(m => m.Country, new { @class = "form-control form-control-alternative", @placeholder = "Country" })
+                                @Html.ValidationMessageFor(m => m.Country, "")
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.PinCode, new { @class = "form-control-label" })
+                                @Html.TextBoxFor(m => m.PinCode, new { @class = "form-control form-control-alternative", @placeholder = "Pin Code" })
+                                @Html.ValidationMessageFor(m => m.PinCode, "")
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Module, new { @class = "form-control-label" })
+                                @Html.DropDownListFor(m => m.Module, (IEnumerable<SelectListItem>)ViewBag.Module, null, new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ExamCity, new { @class = "form-control-label" })
+                                @Html.DropDownListFor(m => m.ExamCity, (IEnumerable<SelectListItem>)ViewBag.TestCentre, null, new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Image, new { @class = "form-control-label" })
+                                @Html.TextBox("Image","", new { @type = "file", @class = "form-control form-control-alternative" })
+                                @Html.ValidationMessageFor(m => m.Image, "")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary">Register & View Application</button>
+            }
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

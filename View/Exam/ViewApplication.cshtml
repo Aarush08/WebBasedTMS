@@ -1,0 +1,86 @@
+﻿@model WebBasedTMS.Models.ExamParticipants
+
+@{
+    ViewBag.Title = "View Application";
+    Layout = "~/Views/Shared/_Exam.cshtml";
+}
+
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header border-0">
+                <h3 class="mb-0">Application Form</h3>
+            </div>
+            <div class="table-responsive">
+                <table class="table align-items-center table-flush">
+                    <tr>
+                        <th colspan="2"><center>Application Number  @Model.Id</center> </th>
+                        <th colspan="2"><center>Exam Date  @Model.ExamDate.ToString("dd MMMM yyyy")</center> </th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>@Model.Name</td>
+                        <th>Date Of Birth</th>
+                        <td>@Model.DateofBirth</td>
+                    </tr>
+                    <tr>
+                        <th>Mobile Number</th>
+                        <td>@Model.MobileNumber</td>
+                        <th>Email Address</th>
+                        <td>@Model.Email</td>
+                    </tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>@Model.Address,@Model.City</td>
+                        <th>State</th>
+                        <td>@Model.State,@Model.Country-@Model.PinCode</td>
+                    </tr>
+                    <tr>
+                        <th>Module</th>
+                        <td>@Model.Module</td>
+                        <th>Test Centre</th>
+                        <td>@Model.ExamCity</td>
+                    </tr>
+                    @if (Model.PaymmentStatus == true)
+                    {
+                        <tr>
+                            <th>Payment Status</th>
+                            <td>Completed</td>
+                            <th>Payment Id</th>
+                            <td>@Model.PaymentId</td>
+                        </tr>
+                        <tr>
+                            <th colspan="4">
+                                <center>
+                                    @using (Html.BeginForm("AdmitCards", "Exam", FormMethod.Get))
+                                    {
+                                        @Html.HiddenFor(m => m.Id)
+                                        <button class="btn btn-primary">Download Admit Card</button>
+                                    }
+
+                                </center>
+                            </th>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <th colspan="4"><center> Your Payment is left</center></th>
+                        </tr>
+                        <tr>
+                            <th colspan="4">
+                                <center>
+                                    @using (Html.BeginForm("MakePayment", "Exam", FormMethod.Get))
+                                    {
+                                        @Html.HiddenFor(m => m.Id)
+                                        <button class="btn btn-primary">Make Payment</button>
+                                    }
+
+                                </center>
+                            </th>
+                        </tr>
+                    }
+                </table>
+            </div>
+
+        </div>
+    </div>

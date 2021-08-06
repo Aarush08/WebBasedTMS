@@ -1,0 +1,77 @@
+﻿@model WebBasedTMS.Models.Certificates
+
+@{
+    ViewBag.Title = "SearchCertificate";
+    Layout = "~/Views/Shared/_Exam.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+        Exam Login
+    </title>
+    <!-- Favicon -->
+    <link href="../assets/img/brand/favicon.png" rel="icon" type="image/png">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <!-- Icons -->
+    <link href="../assets/js/plugins/nucleo/css/nucleo.css" rel="stylesheet" />
+    <link href="../assets/js/plugins/fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link href="../assets/css/argon-dashboard.css?v=1.1.1" rel="stylesheet" />
+    <style>
+        .field-validation-error {
+            color: red;
+        }
+
+        .input-validation-error {
+            border: 2px solid red;
+        }
+    </style>
+</head>
+
+<div class="col-xl-12 order-xl-1">
+    <div class="card bg-secondary shadow">
+        <div class="card-header bg-white border-0">
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <h3 class="mb-0">SEARCH CERTIFICATE</h3>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("FindCertificate", "Exam", FormMethod.Get, new { enctype = "multipart/form-data" }))
+            {
+                <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.ApplicationId, new { @class = "form-control-label" })
+                                @Html.TextBoxFor(m => m.ApplicationId, new { @class = "form-control form-control-alternative", @placeholder = "Application Number",@type = "number" })
+                                @Html.ValidationMessageFor(m => m.ApplicationId, "")
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Name, new { @class = "form-control-label" })
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control form-control-alternative", @placeholder = "Name" })
+                                @Html.ValidationMessageFor(m => m.Name, "")
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <button class="btn btn-primary">Search</button>
+            }
+
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

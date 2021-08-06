@@ -1,0 +1,44 @@
+﻿@model WebBasedTMS.Models.Certificates
+
+@{
+    ViewBag.Title = "Certificate";
+    Layout = null;
+    string str = ViewBag.Signature;
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<style>
+    #unique
+    {
+        margin:20px;
+        background-color:white;
+    }
+</style>
+<div class="card" style="background-image: linear-gradient(to bottom right,orange, yellow);">
+    <div class="card-header" >
+        <h4>Certificate No-WBTMS/@Model.Id <span style="float:right;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Web Based Training Management System</span></h4>
+    </div>
+    <div id="unique">
+        <h2 style="text-align:center">Web Based Training Management System</h2>
+        <h6 style="text-align:center">Campus: Electronic City Phase 1,Bangalore(Karnataka)-560100</h6>
+        <h6 style="text-align:center">Certify that</h6>
+        <h2 style="text-align:center">@Model.Name</h2>
+        <h6 style="text-align:center">Learnt</h6>
+        <h2 style="text-align:center">@Model.Module</h2>
+        <p style="text-align:center">
+            Conducted By:Web Based Training Management System <br />
+            and obtained 'A' Grade<br />
+            In recoginition of His/Her this<br /> Certificate is awarded
+        </p>
+        <div>
+            <img src="~/TrainersData/signature.png" />
+            <img src="~/TrainersData/tms.png" style="float:right" /><br />
+        </div>
+
+    </div>
+    <div class="card-footer" style="background-image: linear-gradient(to bottom right,orange, yellow);">
+        <h6><span style="float:right;font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">Campus: Electronic City Phase 1,Bangalore(Karnataka)-560100<br />Email: himanshugoyal1607@gmail.com Mobile: +918571891690</span></h6>
+    </div>
+</div>
